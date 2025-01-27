@@ -3,9 +3,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UserModel } from './entities/user.entitiy';
-import { BookModel, CarModel } from './entities/inheritance.entity';
-
+import { ProfileModel } from './entities/profile.entity';
+import { ProfileUserModel } from './entities/profileUserModel.entity';
 // import {
 //   AirplaneModel,
 //   ComputerModel,
@@ -15,7 +14,7 @@ import { BookModel, CarModel } from './entities/inheritance.entity';
 @Module({
   imports: [
     // 모델 레포지토리 주입
-    TypeOrmModule.forFeature([UserModel]),
+    TypeOrmModule.forFeature([ProfileModel, ProfileUserModel]),
 
     TypeOrmModule.forRoot({
       type: 'postgres',
@@ -27,7 +26,7 @@ import { BookModel, CarModel } from './entities/inheritance.entity';
 
       // 자동으로 테이블을 생성시킨다.
       // run 시키고 explorer 에서 확인 가능
-      entities: [CarModel, BookModel],
+      entities: [ProfileModel, ProfileUserModel],
       synchronize: true,
     }),
   ],
